@@ -12,6 +12,7 @@ class BoxTest {
         String name = box.whatsThis();
         assertThat(name).isEqualTo("Sphere");
     }
+
     @Test
     void isThisTetrahedron() {
         Box box = new Box(4, 10);
@@ -31,6 +32,7 @@ class BoxTest {
                 .isGreaterThan(-2)
                 .isEqualTo(-1);
     }
+
     @Test
     void testNumberOfVerticesNonEqualsMenusOne() {
         Box box = new Box(12, 10);
@@ -52,6 +54,7 @@ class BoxTest {
                 .isFalse()
                 .isInstanceOf(Boolean.class);
     }
+
     @Test
     void testExistIsTrue() {
         Box box = new Box(0, 10);
