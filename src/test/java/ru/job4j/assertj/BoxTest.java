@@ -12,6 +12,12 @@ class BoxTest {
         String name = box.whatsThis();
         assertThat(name).isEqualTo("Sphere");
     }
+    @Test
+    void isThisTetrahedron() {
+        Box box = new Box(4, 10);
+        String name = box.whatsThis();
+        assertThat(name).isEqualTo("Tetrahedron");
+    }
 
     @Test
     void testNumberOfVerticesEqualsMenusOne() {
