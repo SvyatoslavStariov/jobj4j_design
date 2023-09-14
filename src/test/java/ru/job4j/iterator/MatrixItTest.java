@@ -50,6 +50,23 @@ class MatrixItTest {
     }
 
     @Test
+    void whenRowHasDiffSizeManyElements() {
+        int[][] input = {
+                {1}, {2, 3}, {4, 5, 6, 7}, {}, {}, {}, {8}
+        };
+        MatrixIt iterator = new MatrixIt(input);
+        assertThat(iterator.next()).isEqualTo(1);
+        assertThat(iterator.next()).isEqualTo(2);
+        assertThat(iterator.next()).isEqualTo(3);
+        assertThat(iterator.next()).isEqualTo(4);
+        assertThat(iterator.next()).isEqualTo(5);
+        assertThat(iterator.next()).isEqualTo(6);
+        assertThat(iterator.next()).isEqualTo(7);
+        assertThat(iterator.next()).isEqualTo(8);
+        assertThat(iterator.hasNext()).isFalse();
+    }
+
+    @Test
     void whenFewEmpty() {
         int[][] input = {
                 {1}, {}, {}, {}, {2}
