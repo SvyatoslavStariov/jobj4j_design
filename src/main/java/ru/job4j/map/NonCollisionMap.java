@@ -42,7 +42,8 @@ public class NonCollisionMap<K, V> implements SimpleMap<K, V> {
 
     private void expand() {
         MapEntry<K, V>[] temp = table;
-        table = new MapEntry[capacity *= 2];
+        capacity *= 2;
+        table = new MapEntry[capacity];
         for (MapEntry<K, V> entry : temp) {
             if (entry != null) {
                 int index = getIndex(entry.key);
