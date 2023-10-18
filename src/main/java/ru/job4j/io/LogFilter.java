@@ -3,10 +3,9 @@ package ru.job4j.io;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class LogFilter {
     private final String file;
@@ -16,14 +15,15 @@ public class LogFilter {
     }
 
     public List<String> filter() {
-        List<String> rsl = Collections.emptyList();
+        List<String> rsl = new ArrayList<>();
         try (BufferedReader in = new BufferedReader(new FileReader(this.file))) {
-            rsl = in.lines()
-                    .map(str -> str.split(" "))
-                    .filter(strArr -> strArr.length >= 2)
-                    .filter(strArr -> Objects.equals(strArr[strArr.length - 2], "404"))
-                    .map(strArr -> String.join(" ", strArr))
-                    .collect(Collectors.toList());
+            String str;
+            while ((str = in.readLine()) != null) {
+                String[] arr = str.split(" ");
+                if (arr.length >= 2 && Objects.equals(arr[arr.length - 2], "404")) {
+                    rsl.add(str);
+                }
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
