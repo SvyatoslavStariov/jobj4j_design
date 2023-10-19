@@ -40,7 +40,7 @@ public class LogFilter {
                         new FileOutputStream(out)
                 ))) {
             printWriter.println(data);
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
