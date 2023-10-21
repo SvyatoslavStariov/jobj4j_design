@@ -33,10 +33,26 @@ class ConfigTest {
     }
 
     @Test
-    void whenPairEqualsComment() {
-        String path = "./data/pair_wrong_pattern_comment.properties";
+    void whenEqualsCommentOnLineOne() {
+        String path = "./data/just_equals_comment.properties";
         Config config = new Config(path);
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, config::load);
-        assertThat(exception.getMessage()).isEqualTo("wrong pattern");
+        assertThat(exception.getMessage()).isEqualTo("wrong pattern, key and value is blank, on line 1");
+    }
+
+    @Test
+    void whenEqualsWithKeyOnLineTwoComment() {
+        String path = "./data/equals_and_key_comment.properties";
+        Config config = new Config(path);
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, config::load);
+        assertThat(exception.getMessage()).contains("wrong pattern, key", "without value, on line 2");
+    }
+
+    @Test
+    void whenEqualsWithValueOnLineTwoComment() {
+        String path = "./data/equals_and_value_comment.properties";
+        Config config = new Config(path);
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, config::load);
+        assertThat(exception.getMessage()).contains("wrong pattern, value", "without key, on line 2");
     }
 }
