@@ -5,7 +5,6 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 public class Analysis {
     public void unavailable(String source, String target) {
@@ -48,7 +47,7 @@ public class Analysis {
 
 
     private void writeFile(String rls, String target) {
-        try (BufferedWriter bufferedWriter = new BufferedWriter(new PrintWriter(target))) {
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(target))) {
             bufferedWriter.write(rls);
         } catch (IOException e) {
             e.printStackTrace();
