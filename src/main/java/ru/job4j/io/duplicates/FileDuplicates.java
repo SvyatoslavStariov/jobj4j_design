@@ -26,7 +26,7 @@ public class FileDuplicates {
                         System.out.printf("This is file duplicate with name [%s] and size [%d] - absolute path %s \n",
                                 fileProperty.getName(),
                                 fileProperty.getSize(),
-                                path.getFileName().toAbsolutePath());
+                                path.toString());
                     });
                 });
     }
