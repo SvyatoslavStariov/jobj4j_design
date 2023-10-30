@@ -24,7 +24,7 @@ public class SearchFiles extends SimpleFileVisitor<Path> {
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
         if (predicate.test(file)) {
-            paths.add(file.getFileName());
+            paths.add(file);
         }
         return super.visitFile(file, attrs);
     }
