@@ -7,9 +7,7 @@ import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 public class SearchFiles extends SimpleFileVisitor<Path> {
     private List<Path> paths = new ArrayList<>();
@@ -20,15 +18,14 @@ public class SearchFiles extends SimpleFileVisitor<Path> {
     }
 
     public List<Path> getPaths() {
-        return paths.stream()
-                .filter(Objects::nonNull)
-                .filter(predicate)
-                .collect(Collectors.toList());
+        return paths;
     }
 
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-        paths.add(file.getFileName());
+        if (predicate.test(file)) {
+            paths.add(file.getFileName());
+        }
         return super.visitFile(file, attrs);
     }
 }
