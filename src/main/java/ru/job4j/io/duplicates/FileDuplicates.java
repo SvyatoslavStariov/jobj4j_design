@@ -1,23 +1,24 @@
 package ru.job4j.io.duplicates;
 
 import java.io.IOException;
-import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.SimpleFileVisitor;
-import java.nio.file.attribute.BasicFileAttributes;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class FileDuplicates {
 
-    private static Map<FileProperty, List<Path>> map = new HashMap<>();
-
     public static void main(String[] args) throws IOException {
-        Files.walkFileTree(Path.of("./"), new DuplicatesVisitor());
-        map.entrySet().stream()
+        DuplicatesVisitor duplicatesVisitor = new DuplicatesVisitor();
+        Files.walkFileTree(Path.of("./"), duplicatesVisitor);
+        printFile(duplicatesVisitor.getFilePathtMap());
+    }
+
+    private static void printFile(Map<FileProperty, List<Path>> filePathtMap) {
+        if (filePathtMap.isEmpty()) {
+            return;
+        }
+        filePathtMap.entrySet().stream()
                 .filter(entry -> entry.getValue().size() > 1)
                 .forEach(entry -> {
                     FileProperty fileProperty = entry.getKey();
@@ -29,20 +30,5 @@ public class FileDuplicates {
                                 path.toString());
                     });
                 });
-    }
-
-    private static class DuplicatesVisitor extends SimpleFileVisitor<Path> {
-
-        @Override
-        public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-            map.compute(new FileProperty(Files.size(file), file.getFileName().toString()), (k, v) -> {
-                if (v == null) {
-                    v = new ArrayList<>();
-                }
-                v.add(file);
-                return v;
-            });
-            return super.visitFile(file, attrs);
-        }
     }
 }
