@@ -26,8 +26,8 @@ public class Search {
         if (args.length < 2) {
             throw new IllegalArgumentException("No arguments");
         }
-        if (!args[0].matches(".*[./].*")) {
-            throw new IllegalArgumentException(String.format("Wrong patter [%s] for file system", args[0]));
+        if (!Files.exists(Paths.get(args[0]))) {
+            throw new IllegalArgumentException(String.format("Wrong path from patter [%s]", args[0]));
         }
         if (!args[1].matches("^\\.[^0-9]+")) {
             throw new IllegalArgumentException(String.format("Wrong patter [%s] for file format", args[1]));
