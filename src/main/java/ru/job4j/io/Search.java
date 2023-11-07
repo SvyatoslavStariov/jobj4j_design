@@ -26,7 +26,7 @@ public class Search {
         if (args.length < 2) {
             throw new IllegalArgumentException("No arguments");
         }
-        if (!Files.exists(Paths.get(args[0]))) {
+        if (!Files.exists(Paths.get(args[0])) && !Files.isDirectory(Paths.get(args[0]))) {
             throw new IllegalArgumentException(String.format("Wrong path from patter [%s]", args[0]));
         }
         if (!args[1].matches("^\\.[^0-9]+")) {
