@@ -29,7 +29,7 @@ public class ArgsName {
         return names;
     }
 
-    private static void isValid(String[] args) {
+    public static void isValid(String[] args) {
         if (args.length == 0) {
             throw new IllegalArgumentException("Arguments not passed to program");
         }
