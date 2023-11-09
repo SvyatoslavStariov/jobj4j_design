@@ -52,7 +52,7 @@ public class Zip {
         }
     }
 
-    private List<Path> SearchFile(String directory, String exclude, String output) {
+    private List<Path> searchFile(String directory, String exclude, String output) {
         isValid(directory, exclude, output);
         Path path = Path.of(directory);
         SearchFiles searchFiles = new SearchFiles(p -> {
@@ -73,7 +73,7 @@ public class Zip {
         String directory = argsName.get(DIRECTORY);
         String exclude = argsName.get(EXCLUDE);
         String output = argsName.get(OUTPUT);
-        List<Path> paths = zip.SearchFile(directory, exclude, output);
+        List<Path> paths = zip.searchFile(directory, exclude, output);
         zip.packFiles(
                 paths,
                 new File(output)
