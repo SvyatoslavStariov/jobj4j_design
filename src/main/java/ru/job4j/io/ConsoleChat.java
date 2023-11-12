@@ -27,11 +27,10 @@ public class ConsoleChat {
         var scanner = new Scanner(System.in);
         Random random = new Random();
         List<String> logs = new ArrayList<>();
-        boolean isContinue = true;
         boolean isPause = false;
         List<String> phrases = readPhrases();
-        while (scanner.hasNextLine() && isContinue) {
-            String word = scanner.next();
+        while (scanner.hasNextLine()) {
+            String word = scanner.nextLine();
             logs.add(word);
             if (CONTINUE.equals(word)) {
                 isPause = false;
@@ -39,7 +38,7 @@ public class ConsoleChat {
                 isPause = true;
             } else if (OUT.equals(word)) {
                 saveLog(logs);
-                isContinue = false;
+                break;
             } else if (!isPause) {
                 int indexRandom = random.nextInt(phrases.size());
                 String phrase = phrases.get(indexRandom);
