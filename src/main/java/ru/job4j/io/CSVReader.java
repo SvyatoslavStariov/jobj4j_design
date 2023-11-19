@@ -36,11 +36,15 @@ public class CSVReader {
 
     private static String buildResult(String[][] result, ArgsName argsName) {
         return Arrays.stream(result)
-                .map(x -> Arrays.stream(x).filter(Objects::nonNull).collect(Collectors.joining(argsName.get(DELIMITER))))
-                .collect(Collectors.joining(System.lineSeparator())).concat(System.lineSeparator());
+                .map(str -> Arrays.stream(str)
+                        .filter(Objects::nonNull)
+                        .collect(Collectors.joining(argsName.get(DELIMITER))))
+                .collect(Collectors.joining(System.lineSeparator()))
+                .concat(System.lineSeparator());
     }
 
-    private static String[][] sortMap(Map<String, List<String>> rowColumnMap, Map<Integer, String> filterMap) {
+    private static String[][] sortMap(Map<String, List<String>> rowColumnMap,
+                                      Map<Integer, String> filterMap) {
         Map<String, List<String>> sortedMap = new LinkedHashMap<>();
         int max = 0;
         for (Map.Entry<Integer, String> entry : filterMap.entrySet()) {
@@ -118,21 +122,32 @@ public class CSVReader {
         Arrays.stream(args).forEach(arg -> {
             String[] split = patternSplit.split(arg, 2);
             if (split.length != 2 && split[0].isBlank() && split[1].isBlank()) {
-                throw new IllegalArgumentException(String.format("Array '%s' with length equals '%d', but must 2,", Arrays.toString(split), split.length));
+                throw new IllegalArgumentException(
+                        String.format("Array '%s' with length equals '%d', but must 2,"
+                                , Arrays.toString(split), split.length)
+                );
             }
             String key = split[0].substring(1);
             String value = split[1];
             if (key.startsWith(PATH) && !value.endsWith(".csv")) {
-                throw new IllegalArgumentException(String.format("Format path '%s' is wrong, but must .cvs", value));
+                throw new IllegalArgumentException(
+                        String.format("Format path '%s' is wrong, but must .cvs", value)
+                );
             }
             if (key.startsWith(FILTER) && patternFilter.split(value).length == 0) {
-                throw new IllegalArgumentException(String.format("Format filter '%s' is wrong", value));
+                throw new IllegalArgumentException(
+                        String.format("Format filter '%s' is wrong", value)
+                );
             }
             if (key.startsWith(DELIMITER) && !patternDelimiter.matcher(value).matches()) {
-                throw new IllegalArgumentException(String.format("Format delimiter '%s' don't contains ';' or ','", value));
+                throw new IllegalArgumentException(
+                        String.format("Format delimiter '%s' don't contains ';' or ','", value)
+                );
             }
             if (key.startsWith(OUTPUT) && !value.endsWith(".csv")) {
-                throw new IllegalArgumentException(String.format("Format path '%s' is wrong, but must .cvs", value));
+                throw new IllegalArgumentException(
+                        String.format("Format path '%s' is wrong, but must .cvs", value)
+                );
             }
         });
     }
