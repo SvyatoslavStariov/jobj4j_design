@@ -123,8 +123,8 @@ public class CSVReader {
             String[] split = patternSplit.split(arg, 2);
             if (split.length != 2 && split[0].isBlank() && split[1].isBlank()) {
                 throw new IllegalArgumentException(
-                        String.format("Array '%s' with length equals '%d', but must 2,"
-                                , Arrays.toString(split), split.length)
+                        String.format("Array '%s' with length equals '%d', but must 2,",
+                                Arrays.toString(split), split.length)
                 );
             }
             String key = split[0].substring(1);
