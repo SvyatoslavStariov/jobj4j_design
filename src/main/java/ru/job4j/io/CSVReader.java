@@ -1,6 +1,5 @@
 package ru.job4j.io;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -96,8 +95,7 @@ public class CSVReader {
 
     private static List<String> readFile(String path) {
         List<String> phrases = new ArrayList<>();
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(path))) {
-            Scanner scanner = new Scanner(bufferedReader);
+        try (Scanner scanner = new Scanner(new FileReader(path))) {
             while (scanner.hasNextLine()) {
                 phrases.add(scanner.nextLine());
             }
