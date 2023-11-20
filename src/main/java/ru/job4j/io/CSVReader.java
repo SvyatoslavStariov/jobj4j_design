@@ -113,47 +113,39 @@ public class CSVReader {
         }
     }
 
-    private static void isValid(String[] args) {
+    private static void isValid(ArgsName argsName) {
         Pattern patternDelimiter = Pattern.compile("[;,]");
         Pattern patternFilter = Pattern.compile("[,]");
-        Pattern patternSplit = Pattern.compile("[=]");
-        Arrays.stream(args).forEach(arg -> {
-            String[] split = patternSplit.split(arg, 2);
-            if (split.length != 2 && split[0].isBlank() && split[1].isBlank()) {
-                throw new IllegalArgumentException(
-                        String.format("Array '%s' with length equals '%d', but must 2,",
-                                Arrays.toString(split), split.length)
-                );
-            }
-            String key = split[0].substring(1);
-            String value = split[1];
-            if (key.startsWith(PATH) && !value.endsWith(".csv")) {
-                throw new IllegalArgumentException(
-                        String.format("Format path '%s' is wrong, but must .cvs", value)
-                );
-            }
-            if (key.startsWith(FILTER) && patternFilter.split(value).length == 0) {
-                throw new IllegalArgumentException(
-                        String.format("Format filter '%s' is wrong", value)
-                );
-            }
-            if (key.startsWith(DELIMITER) && !patternDelimiter.matcher(value).matches()) {
-                throw new IllegalArgumentException(
-                        String.format("Format delimiter '%s' don't contains ';' or ','", value)
-                );
-            }
-            if (key.startsWith(OUTPUT) && !value.endsWith(".csv")) {
-                throw new IllegalArgumentException(
-                        String.format("Format path '%s' is wrong, but must .cvs", value)
-                );
-            }
-        });
+        String path = argsName.get(PATH);
+        String filter = argsName.get(FILTER);
+        String delimiter = argsName.get(DELIMITER);
+        String output = argsName.get(OUTPUT);
+        if (!path.endsWith(".csv")) {
+            throw new IllegalArgumentException(
+                    String.format("Format path '%s' is wrong, but must .cvs", path)
+            );
+        }
+        if (patternFilter.split(filter).length == 0) {
+            throw new IllegalArgumentException(
+                    String.format("Format filter '%s' is wrong", filter)
+            );
+        }
+        if (!patternDelimiter.matcher(delimiter).matches()) {
+            throw new IllegalArgumentException(
+                    String.format("Format delimiter '%s' don't contains ';' or ','", delimiter)
+            );
+        }
+        if (!output.endsWith(".csv")) {
+            throw new IllegalArgumentException(
+                    String.format("Format path '%s' is wrong, but must .cvs", output)
+            );
+        }
     }
 
 
     public static void main(String[] args) throws Exception {
-        isValid(args);
         ArgsName argsName = ArgsName.of(args);
+        isValid(argsName);
         handle(argsName);
     }
 }
