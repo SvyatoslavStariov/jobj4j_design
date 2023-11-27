@@ -16,24 +16,37 @@ public class EchoServer {
                      BufferedReader in = new BufferedReader(
                              new InputStreamReader(socket.getInputStream()))) {
                     out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
-                    for (String str = in.readLine(); str != null && !str.isEmpty(); str = in.readLine()) {
-                        System.out.println(str);
-                        if (!str.startsWith("GET")) {
-                            continue;
-                        }
-                        String[] params = str.split(" ");
-                        if (params.length < 1 || !params[1].matches(".*=.*")) {
-                            continue;
-                        }
-                        String[] requestParams = params[1].split("=");
-                        if (requestParams.length < 1 || !"Bye".equals(requestParams[1])) {
-                            continue;
-                        }
+                    String str = in.readLine();
+                    System.out.println(str);
+                    out.flush();
+                    if (isFinish(str)) {
                         server.close();
                     }
-                    out.flush();
                 }
             }
         }
+    }
+
+    private static boolean isFinish(String str) {
+        String[] params = getParams(str);
+        boolean isFinish = false;
+        if (params.length != 0) {
+            String[] requestParams = params[1].split("=", 2);
+            String key = requestParams[0].replaceAll("[/?]", "");
+            String value = requestParams[1];
+            isFinish = "msg".equals(key) && "Bye".equals(value);
+        }
+        return isFinish;
+    }
+
+    private static String[] getParams(String str) {
+        String[] arr = new String[]{};
+        if (str.startsWith("GET")) {
+            String[] params = str.split(" ");
+            if (params.length > 1 && params[1].contains("=")) {
+                arr = params;
+            }
+        }
+        return arr;
     }
 }
