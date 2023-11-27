@@ -1,0 +1,3 @@
+2023-11-27 22:52:13,838 ERROR ru.job4j.io.EchoServer:main:41 - 
+java.io.IOException
+	at ru.job4j.io.EchoServer.main(EchoServer.java:20)
