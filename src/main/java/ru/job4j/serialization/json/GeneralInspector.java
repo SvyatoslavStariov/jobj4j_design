@@ -1,9 +1,5 @@
 package ru.job4j.serialization.json;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -16,6 +12,9 @@ public class GeneralInspector {
     private List<String> subdivision;
 
     private ZoneControl zoneControl;
+
+    public GeneralInspector() {
+    }
 
     public GeneralInspector(boolean isVacation,
                             int age,

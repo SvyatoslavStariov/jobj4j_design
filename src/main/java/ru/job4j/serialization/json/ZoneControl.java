@@ -1,14 +1,25 @@
 package ru.job4j.serialization.json;
 
-import java.time.LocalDate;
+import org.json.JSONPropertyIgnore;
+
 import java.util.Objects;
 
 public class ZoneControl {
+
     private String area;
 
+    private GeneralInspector inspector;
+
+    public ZoneControl() {
+    }
 
     public ZoneControl(String area) {
         this.area = area;
+    }
+
+    public ZoneControl(String area, GeneralInspector inspector) {
+        this.area = area;
+        this.inspector = inspector;
     }
 
     public String getArea() {
@@ -17,6 +28,16 @@ public class ZoneControl {
 
     public void setArea(String area) {
         this.area = area;
+    }
+
+
+    @JSONPropertyIgnore
+    public GeneralInspector getInspector() {
+        return inspector;
+    }
+
+    public void setInspector(GeneralInspector inspector) {
+        this.inspector = inspector;
     }
 
     @Override
@@ -30,18 +51,24 @@ public class ZoneControl {
 
         ZoneControl that = (ZoneControl) o;
 
-        return Objects.equals(area, that.area);
+        if (!Objects.equals(area, that.area)) {
+            return false;
+        }
+        return Objects.equals(inspector, that.inspector);
     }
 
     @Override
     public int hashCode() {
-        return area != null ? area.hashCode() : 0;
+        int result = area != null ? area.hashCode() : 0;
+        result = 31 * result + (inspector != null ? inspector.hashCode() : 0);
+        return result;
     }
 
     @Override
     public String toString() {
         return "ZoneControl{"
                 + "area='" + area + '\''
+                + ", inspector=" + inspector
                 + '}';
     }
 }
