@@ -20,17 +20,32 @@ create table roles_rules(
 	rules_id int references rules(id)
 );
 
+create table categories(
+	id serial primary key,
+	category text
+);
 
-insert into users(full_name) values('Ivan Ivanov');
-insert into roles(role_name, user_id) VALUES('Admin', 1);
-insert into rules(rule_name) values('Absolute');
+create table states(
+	id serial primary key,
+	state text
+);
 
-insert into roles_rules(roles_id, rules_id) values(1, 1);
+create table items(
+	id serial primary key,
+	name_item text,
+	user_id int references users(id),
+	category_id int references categories(id),
+	state_id int references states(id)
+);
 
-insert into categories(category) values ('Trucks');
-insert into states(state) values('Approval');
-insert into items(name_item, user_id, category_id, state_id) values('Order', 1, 1, 1);
+create table comments(
+	id serial primary key,
+	comment_text text,
+	item_id int references items(id)
+);
 
-insert into comments(comment_text, item_id) values('No product', 1);
-
-insert into attachs(file, item_id) values('No file', 1);
+create table attachs(
+	id serial primary key,
+	file text,
+	item_id int references items(id)
+);
