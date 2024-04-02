@@ -14,7 +14,6 @@ insert into departments(name) values('Отдел продаж');
 insert into departments(name) values('Отдел маркетинга');
 insert into departments(name) values('Отдел качества');
 
-
 insert into employees(name, department_id) values('Главный Закупкин', 1);
 insert into employees(name, department_id) values('Зам Закупкин', 1);
 insert into employees(name, department_id) values('Главный Продажкин', 2);
