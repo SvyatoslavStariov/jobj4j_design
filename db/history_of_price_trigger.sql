@@ -12,7 +12,7 @@ $$
 LANGUAGE 'plpgsql';
 
 create trigger after_product_history_trigger
-    before insert
+    after insert
     on products
     for each row
     execute procedure after_products();
