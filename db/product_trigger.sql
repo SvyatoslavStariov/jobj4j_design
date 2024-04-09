@@ -4,7 +4,8 @@ or replace function after_taxes()
 $$
     BEGIN
         update products
-        set price = price + price * 0.13;
+        set price = price + price * 0.13
+        where id = (select id from inserted);
         return new;
     END;
 $$
@@ -23,8 +24,7 @@ or replace function before_taxes()
     returns trigger as
 $$
     BEGIN
-        update products
-        set price = price + price * 0.13;
+        new.price =new.price + new.price * 0.13;
         return new;
     END;
 $$
