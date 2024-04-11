@@ -32,6 +32,8 @@ $$
     end;
 $$;
 
+select f_delete_by_id_empty_count(0, 13);
+
 create
 or replace procedure p_delete_all_count_more_then(u_count integer)
 language 'plpgsql'
