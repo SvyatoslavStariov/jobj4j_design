@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class FoolTest {
 
     @Test
-    void when_print_fizz_buzz_digit_multiple_three_and_five() {
+    void whenPrintFizzBuzzDigitMultipleThreeAndFive() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         Fool.printWordOrDigit(15);
@@ -18,7 +18,7 @@ class FoolTest {
     }
 
     @Test
-    void when_print_buzz_digit_multiple_five() {
+    void whenPrintBuzzDigitMultipleFive() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         Fool.printWordOrDigit(10);
@@ -27,7 +27,7 @@ class FoolTest {
 
 
     @Test
-    void when_print_digit_not_multiple() {
+    void whenPrintDigitIsNotMultiple() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         Fool.printWordOrDigit(2);
@@ -35,7 +35,7 @@ class FoolTest {
     }
 
     @Test
-    void when_print_error_digit_multiple_three() {
+    void whenPrintErrorDigitMultipleThree() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         Fool.isAnswerError("", 3);
@@ -43,7 +43,7 @@ class FoolTest {
     }
 
     @Test
-    void when_print_error_digit_multiple_five() {
+    void whenPrintErrorDigitMultipleFive() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         Fool.isAnswerError("", 5);
@@ -51,7 +51,7 @@ class FoolTest {
     }
 
     @Test
-    void when_print_error_digit_multiple_three_and_five() {
+    void whenPrintErrorDigitMultipleThreeAndFive() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         Fool.isAnswerError("", 15);
@@ -59,7 +59,7 @@ class FoolTest {
     }
 
     @Test
-    void when_print_error_wrong_word_fizz_buzz() {
+    void whenPrintErrorWrongWordFizzBuzz() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         Fool.isAnswerError("FizzBuzz", 0);
@@ -67,7 +67,7 @@ class FoolTest {
     }
 
     @Test
-    void when_print_error_wrong_word_buzz() {
+    void whenPrintErrorWrongWordBuzz() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         Fool.isAnswerError("Buzz", 0);
@@ -75,7 +75,7 @@ class FoolTest {
     }
 
     @Test
-    void when_print_error_wrong_word_fizz() {
+    void whenPrintErrorWrongWordFizz() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
         Fool.isAnswerError("Fizz", 0);
