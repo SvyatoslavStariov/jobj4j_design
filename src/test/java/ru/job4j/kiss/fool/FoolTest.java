@@ -38,7 +38,7 @@ class FoolTest {
     void whenPrintErrorDigitMultipleThree() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
-        Fool.isAnswerError("", 3);
+        Fool.printErrorAndCount("", 3);
         assertEquals("Ошибка. Начинай снова." + System.lineSeparator(), out.toString());
     }
 
@@ -46,7 +46,7 @@ class FoolTest {
     void whenPrintErrorDigitMultipleFive() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
-        Fool.isAnswerError("", 5);
+        Fool.printErrorAndCount("", 5);
         assertEquals("Ошибка. Начинай снова." + System.lineSeparator(), out.toString());
     }
 
@@ -54,7 +54,7 @@ class FoolTest {
     void whenPrintErrorDigitMultipleThreeAndFive() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
-        Fool.isAnswerError("", 15);
+        Fool.printErrorAndCount("", 15);
         assertEquals("Ошибка. Начинай снова." + System.lineSeparator(), out.toString());
     }
 
@@ -62,7 +62,7 @@ class FoolTest {
     void whenPrintErrorWrongWordFizzBuzz() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
-        Fool.isAnswerError("FizzBuzz", 0);
+        Fool.printErrorAndCount("FizzBuzz", 0);
         assertEquals("Ошибка. Начинай снова." + System.lineSeparator(), out.toString());
     }
 
@@ -70,7 +70,7 @@ class FoolTest {
     void whenPrintErrorWrongWordBuzz() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
-        Fool.isAnswerError("Buzz", 0);
+        Fool.printErrorAndCount("Buzz", 0);
         assertEquals("Ошибка. Начинай снова." + System.lineSeparator(), out.toString());
     }
 
@@ -78,7 +78,7 @@ class FoolTest {
     void whenPrintErrorWrongWordFizz() {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setOut(new PrintStream(out));
-        Fool.isAnswerError("Fizz", 0);
+        Fool.printErrorAndCount("Fizz", 0);
         assertEquals("Ошибка. Начинай снова." + System.lineSeparator(), out.toString());
     }
 }

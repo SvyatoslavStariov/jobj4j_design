@@ -16,34 +16,40 @@ public class Fool {
         while (startAt < 100) {
             printWordOrDigit(startAt++);
             var answer = input.nextLine();
-            startAt = isAnswerError(answer, startAt) ? 0 : startAt + 1;
+            startAt = printErrorAndCount(answer, startAt);
         }
     }
 
     public static void printWordOrDigit(int startAt) {
-        boolean isMultipleThree = startAt % 3 == 0;
-        boolean isMultipleFive = startAt % 5 == 0;
-        if (isMultipleThree && isMultipleFive) {
+        if (isMultipleThree(startAt) && isMultipleFive(startAt)) {
             System.out.println("FizzBuzz");
-            return;
-        }
-        if (isMultipleThree) {
+        } else if (isMultipleThree(startAt)) {
             System.out.println("Fizz");
-            return;
-        }
-        if (isMultipleFive) {
+        } else if (isMultipleFive(startAt)) {
             System.out.println("Buzz");
-            return;
+        } else {
+            System.out.println(startAt);
         }
-        System.out.println(startAt);
     }
 
-    public static boolean isAnswerError(String answer, int startAt) {
-        boolean isMultiple = startAt % 3 == 0 || startAt % 5 == 0;
-        boolean isError = isMultiple || KEYWORDS.contains(answer) || !valueOf(startAt).equals(answer);
-        if (isError) {
+    public static int printErrorAndCount(String answer, int startAt) {
+        boolean error = isError(answer, startAt);
+        if (error) {
             System.out.println("Ошибка. Начинай снова.");
         }
-        return isError;
+        return error ? 0 : startAt++;
+    }
+
+    private static boolean isError(String answer, int startAt) {
+        boolean isMultiple = isMultipleThree(startAt) || isMultipleFive(startAt);
+        return isMultiple || KEYWORDS.contains(answer) || !valueOf(startAt).equals(answer);
+    }
+
+    private static boolean isMultipleThree(int startAt) {
+        return startAt % 3 == 0;
+    }
+
+    private static boolean isMultipleFive(int startAt) {
+        return startAt % 5 == 0;
     }
 }
