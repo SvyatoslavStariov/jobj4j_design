@@ -10,7 +10,7 @@ import ru.job4j.ood.lsp.model.ClientVIP;
 public class UserManager {
 
     public void send(Client client) {
-        if (client instanceof Client) {
+        if(client instanceof Client) {
             doSomething();
         } else if (client instanceof ClientVIP) {
             doSomething();
