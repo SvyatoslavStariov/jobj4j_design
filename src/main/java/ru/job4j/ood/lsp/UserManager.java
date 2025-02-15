@@ -10,9 +10,9 @@ import ru.job4j.ood.lsp.model.ClientVIP;
 public class UserManager {
 
     public void send(Client client) {
-        if (client instanceof Client) {
+        if (client.getClass() == Client.class) {
             doSomething();
-        } else if (client instanceof ClientVIP) {
+        } else if (client.getClass() ==  ClientVIP.class) {
             doSomething();
         }
     }
