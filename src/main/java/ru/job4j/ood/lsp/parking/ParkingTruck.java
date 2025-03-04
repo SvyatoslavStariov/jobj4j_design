@@ -10,6 +10,6 @@ public class ParkingTruck extends ParkingVehicle {
 
     @Override
     protected boolean canParking(Vehicle car) {
-        return true;
+        return car.getSize() > 1;
     }
 }

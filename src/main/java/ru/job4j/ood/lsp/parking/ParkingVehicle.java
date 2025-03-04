@@ -25,6 +25,12 @@ public abstract class ParkingVehicle implements IParking {
 
     @Override
     public void addVehicle(Vehicle car) {
+        int tempSize = size - car.getSize();
+        if (!canParking(car) || tempSize < 0) {
+            return;
+        }
+        trucks.add(car);
+        size = tempSize;
     }
 
     protected abstract boolean canParking(Vehicle car);

@@ -7,6 +7,7 @@ public abstract class Vehicle {
     private int size;
 
     public Vehicle(String model, int size) {
+        checkSize(size);
         this.model = model;
         this.size = size;
     }
@@ -26,4 +27,6 @@ public abstract class Vehicle {
     public void setSize(int size) {
         this.size = size;
     }
+
+    protected abstract void checkSize(int size);
 }
