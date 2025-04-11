@@ -46,7 +46,7 @@ class ControlQualityTest {
         );
         controlQuality.distributionProduct(food, new Date(2025, Calendar.FEBRUARY, 10));
         controlQuality.resort(new Date(2026, Calendar.FEBRUARY, 10));
-        assertThat(trash.getFoods()).containsOnly(food) ;
+        assertThat(trash.getFoods()).containsOnly(food);
         assertThat(shop.getFoods()).isEmpty();
         assertThat(warehouse.getFoods()).isEmpty();
     }
@@ -80,7 +80,7 @@ class ControlQualityTest {
             500
         );
         controlQuality.distributionProduct(food, new Date(2025, Calendar.FEBRUARY, 15));
-        controlQuality.resort( new Date(2024, Calendar.FEBRUARY, 15));
+        controlQuality.resort(new Date(2024, Calendar.FEBRUARY, 15));
         assertThat(trash.getFoods()).isEmpty();
         assertThat(shop.getFoods()).isEmpty();
         assertThat(warehouse.getFoods()).containsOnly(food);
@@ -116,7 +116,7 @@ class ControlQualityTest {
         );
         controlQuality.distributionProduct(food, new Date(2025, Calendar.FEBRUARY, 6));
         controlQuality.resort(new Date(2026, Calendar.FEBRUARY, 6));
-        assertThat(warehouse.getFoods()) .isEmpty();
+        assertThat(warehouse.getFoods()).isEmpty();
         assertThat(trash.getFoods()).containsOnly(food);
         assertThat(shop.getFoods()).isEmpty();
     }
