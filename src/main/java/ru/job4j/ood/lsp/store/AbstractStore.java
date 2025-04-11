@@ -31,8 +31,14 @@ public abstract class AbstractStore implements Store {
         foods.remove(food);
     }
 
+    @Override
     public List<Food> getFoods() {
         return foods;
+    }
+
+    @Override
+    public void clearFoods() {
+        foods.clear();
     }
 
     protected abstract boolean isIncludeRangePercent(int percent);
