@@ -11,21 +11,25 @@ public class Brackets {
         '(', ')'
     );
 
+    /**
+     * Вычислительная сложность: O(n)
+     * Пространственная сложность: O(n), из-за использования структуры Stack
+     */
     public boolean isValid(String s) {
         boolean isValid = true;
         if (s == null || s.length() % 2 != 0) {
             isValid = false;
         } else {
-            Stack<Character> stackLeftPart = new Stack<>();
+            Stack<Character> leftParts = new Stack<>();
             for (char c : s.toCharArray()) {
                 if (c == '{' || c == '[' || c == '(') {
-                    stackLeftPart.push(c);
+                    leftParts.push(c);
                 } else if (c == '}' || c == ']' || c == ')') {
-                    if (stackLeftPart.isEmpty()) {
+                    if (leftParts.isEmpty()) {
                         isValid = false;
                         break;
                     }
-                    if (VALID_STRINGS.get(stackLeftPart.pop()) != c) {
+                    if (VALID_STRINGS.get(leftParts.pop()) != c) {
                         isValid = false;
                         break;
                     }
